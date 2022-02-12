@@ -39,11 +39,13 @@ const renderdata = async function () {
 
   data = await request.json();
   console.log(data);
+  bookMarkPush(data);
   renderCards(data, elBooks);
   renderBtns(data);
 };
 
 renderdata();
+console.log(data);
 
 //// RENDER CARDS ////
 
@@ -169,8 +171,13 @@ elBooks.addEventListener("click", function (evt) {
 function bookMarkPush(data) {
   let books = data.items;
   if (bookmarkId) {
-    bookmarkBooks.push(books[bookmarkId]);
-    window.localStorage.setItem("localBookmark", JSON.stringify(bookmarkBooks));
+    if (!bookmarkBooks.find((book) => book.id == books[bookmarkId].id)) {
+      bookmarkBooks.push(books[bookmarkId]);
+      window.localStorage.setItem(
+        "localBookmark",
+        JSON.stringify(bookmarkBooks)
+      );
+    }
   }
 
   bookmarkBooks =
