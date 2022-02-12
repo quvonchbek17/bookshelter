@@ -4,18 +4,44 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css"
+    />
     <link rel="stylesheet" href="./css/main.min.css" />
     <title>Bookshelter</title>
   </head>
   <body>
     <!-- HEADER -->
     <header class="header">
-      <div class="home-container">ovnoimr</div>
-      <div class="container"></div>
+      <div
+        class="home-container header__container d-flex justify-content-between align-items-center"
+      >
+        <a href="#"><img src="./img/bookshelter-logo.svg" alt="logo" /></a>
+        <form>
+          <div class="header__search">
+            <span><i class="fas fa-search"></i></span>
+            <input
+              class="header__input"
+              name="search"
+              type="text"
+              placeholder="Search books"
+              autocomplete="off"
+              required
+            />
+          </div>
+        </form>
+        <div class="header__btns">
+          <button class="light-night">
+            <img src="./img/light-icon.svg" alt="icon" />
+          </button>
+          <button class="header__logout">Logout</button>
+        </div>
+      </div>
     </header>
 
     <!-- MAIN -->
-    <main class="main"><h1>hello world</h1></main>
+    <main class="main"></main>
 
     <!-- FOOTER -->
     <footer class="footer"></footer>
