@@ -1,4 +1,6 @@
 .books {
+  overflow-y: auto;
+  max-height: 500px;
   &__card {
     background-color: white;
     width: 285px;
@@ -6,6 +8,8 @@
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
   }
 
   &__card-img {
@@ -44,6 +48,7 @@
 
   &__btns {
     width: 247px;
+    margin-top: auto;
   }
 
   &__bookmark-btn,
@@ -77,6 +82,7 @@
 }
 
 .cards {
+  width: 997px;
   background: #f8fafd;
   padding-top: 30px;
 }

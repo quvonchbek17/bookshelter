@@ -21,17 +21,18 @@
     <link rel="stylesheet" href="./css/main.min.css" />
     <title>Bookshelter</title>
   </head>
-  <body>
+  <body class=" d-flex flex-column">
     <!-- HEADER -->
     <header class="header">
       <div
         class="home-container header__container d-flex justify-content-between align-items-center"
       >
         <a href="#"><img src="./img/bookshelter-logo.svg" alt="logo" /></a>
-        <form>
+        <form class="search-form">
           <div class="header__search">
             <span><i class="fas fa-search"></i></span>
             <input
+              id="searchInput"
               class="header__input"
               name="search"
               type="text"
@@ -55,7 +56,10 @@
       <div class="home-container">
         <h1 class="visually-hidden">Hello world !</h1>
         <div class="main__top d-flex align-items-center">
-          <p class="main__result">Showing <span>18</span> Result(s)</p>
+          <p class="main__result">
+            Showing
+            <span class="text-primary" id="showResult">18</span> Result(s)
+          </p>
           <button class="main__orderbtn">
             <img src="./img/calendar.svg" alt="calendar-icon" /> Order by newest
           </button>
@@ -113,6 +117,7 @@
             </ul>
           </div>
           <div class="cards">
+            <h2 class="cards-default mt-5 text-center visually-hidden" id="cardsDefault">Kitoblar topilmadi &#128528</h2>
             <div class="books row justify-content-evenly">
               <div class="books__card col-3">
                 <div class="books__card-img">
@@ -127,116 +132,25 @@
                   <h2 class="books__name">phyton</h2>
                   <p class="books__author">Quvonchbek</p>
                   <p class="books__year">2009</p>
-
-                  <div
-                    class="books__btns d-flex flex-wrap justify-content-between"
-                  >
-                    <button class="books__bookmark-btn">Bookmark</button>
-                    <button class="books__info-btn">More Info</button>
-                    <button class="books__read-btn">Read</button>
-                  </div>
                 </div>
-              </div>
-              <div class="books__card col-3">
-                <div class="books__card-img">
-                  <img
-                    class="books__img"
-                    src="http://books.google.com/books/content?id=zYw3sYFtz9kC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api"
-                    alt="book image"
-                  />
-                </div>
-                <div class="books__card-body">
-                  <h2 class="books__name">phyton</h2>
-                  <p class="books__author">Quvonchbek</p>
-                  <p class="books__year">2009</p>
-
-                  <div
-                    class="books__btns d-flex flex-wrap justify-content-between"
-                  >
-                    <button class="books__bookmark-btn">Bookmark</button>
-                    <button class="books__info-btn">More Info</button>
-                    <button class="books__read-btn">Read</button>
-                  </div>
-                </div>
-              </div>
-              <div class="books__card col-3">
-                <div class="books__card-img">
-                  <img
-                    class="books__img"
-                    src="http://books.google.com/books/content?id=zYw3sYFtz9kC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api"
-                    alt="book image"
-                  />
-                </div>
-
-                <div class="books__card-body">
-                  <h2 class="books__name">phyton</h2>
-                  <p class="books__author">Quvonchbek</p>
-                  <p class="books__year">2009</p>
-
-                  <div
-                    class="books__btns d-flex flex-wrap justify-content-between"
-                  >
-                    <button class="books__bookmark-btn">Bookmark</button>
-                    <button class="books__info-btn">More Info</button>
-                    <button class="books__read-btn">Read</button>
-                  </div>
-                </div>
-              </div>
-              <div class="books__card col-3">
-                <div class="books__card-img">
-                  <img
-                    class="books__img"
-                    src="http://books.google.com/books/content?id=zYw3sYFtz9kC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api"
-                    alt="book image"
-                  />
-                </div>
-
-                <div class="books__card-body">
-                  <h2 class="books__name">phyton</h2>
-                  <p class="books__author">Quvonchbek</p>
-                  <p class="books__year">2009</p>
-
-                  <div
-                    class="books__btns d-flex flex-wrap justify-content-between"
-                  >
-                    <button class="books__bookmark-btn">Bookmark</button>
-                    <button class="books__info-btn">More Info</button>
-                    <button class="books__read-btn">Read</button>
-                  </div>
-                </div>
-              </div>
-              <div class="books__card col-3">
-                <div class="books__card-img">
-                  <img
-                    class="books__img"
-                    src="http://books.google.com/books/content?id=zYw3sYFtz9kC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api"
-                    alt="book image"
-                  />
-                </div>
-
-                <div class="books__card-body">
-                  <h2 class="books__name">phyton</h2>
-                  <p class="books__author">Quvonchbek</p>
-                  <p class="books__year">2009</p>
-
-                  <div
-                    class="books__btns d-flex flex-wrap justify-content-between"
-                  >
-                    <button class="books__bookmark-btn">Bookmark</button>
-                    <button class="books__info-btn">More Info</button>
-                    <button class="books__read-btn">Read</button>
-                  </div>
+                <div class="books__btns" id="booksBtns">
+                  <button class="books__bookmark-btn">Bookmark</button>
+                  <button class="books__info-btn">More Info</button>
+                  <button class="books__read-btn">Read</button>
                 </div>
               </div>
             </div>
-            <div class="pagination d-flex flex-wrap justify-content-center">
-              <button class="prev-btn">
+            <div
+              class="pagination d-flex flex-wrap justify-content-center"
+              id="pagination"
+            >
+              <button class="prev-btn" id="prevBtn">
                 <img src="./img/prev-icon.svg" alt="prev icon" />
               </button>
               <div class="pagination__btns d-flex">
                 <button class="books-btn activeBtn">1</button>
               </div>
-              <button class="next-btn">
+              <button class="next-btn" id="nextBtn">
                 <img src="./img/next.svg" alt="next icon" />
               </button>
             </div>

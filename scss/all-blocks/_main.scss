@@ -8,6 +8,7 @@
 
   &__contents {
     display: flex;
+    flex-grow: 1;
   }
   &__result {
     font-family: "Rubik";
