@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css"
+    />
+    <link rel="stylesheet" href="./css/main.min.css" />
+    <title>login</title>
+  </head>
+  <body>
+    <section class="login">
+      <div class="login__container">
+        <img class="mb-1" src="./img/logo.svg" alt="logo" />
+        <form class="login__form">
+          <div class="login__username">
+            <span><i class="fas fa-user"></i></span>
+            <input
+              class="input-login"
+              type="text"
+              placeholder="Username"
+              name="login"
+              autocomplete="off"
+              required
+            />
+          </div>
+          <div class="login__username">
+            <span><i class="fas fa-unlock"></i></span>
+            <input
+              class="input-password"
+              type="password"
+              placeholder="Password"
+              name="password"
+              required
+            />
+          </div>
+          <p id="loginError" class="login__error text-danger visually-hidden">
+            Login yoki parol xato !
+          </p>
+
+          <button class="login__btn" type="submit">Login</button>
+          <p class="login__forgot">Forgot password?</p>
+        </form>
+      </div>
+    </section>
+
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="./js/login.js"></script>
+  </body>
+</html>
