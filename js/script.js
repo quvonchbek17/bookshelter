@@ -18,7 +18,9 @@ let bookmarkId;
 let data;
 
 //// LOGOUT ////
-
+if (window.localStorage.getItem("token") == null) {
+  window.location.replace("login.html");
+}
 logout.addEventListener("click", function (evt) {
   let localToken = window.localStorage.getItem("token");
   if (localToken) {
