@@ -25,7 +25,7 @@ elForm.addEventListener("submit", function (evt) {
       if (data.token) {
         loginError.classList.add("visually-hidden");
         window.localStorage.setItem("token", data.token);
-        window.location.replace("zindex.html");
+        window.location.replace("index.html");
       } else {
         loginError.classList.remove("visually-hidden");
         elLogin.value = null;
