@@ -4,6 +4,16 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans&family=Rubik:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css"
@@ -35,13 +45,205 @@
           <button class="light-night">
             <img src="./img/light-icon.svg" alt="icon" />
           </button>
-          <button class="header__logout">Logout</button>
+          <button id="logout" class="header__logout">Logout</button>
         </div>
       </div>
     </header>
 
     <!-- MAIN -->
-    <main class="main"></main>
+    <main class="main">
+      <div class="home-container">
+        <h1 class="visually-hidden">Hello world !</h1>
+        <div class="main__top d-flex align-items-center">
+          <p class="main__result">Showing <span>18</span> Result(s)</p>
+          <button class="main__orderbtn">
+            <img src="./img/calendar.svg" alt="calendar-icon" /> Order by newest
+          </button>
+        </div>
+        <div class="main__contents">
+          <div class="bookmark">
+            <h2 class="bookmark__heading">Bookmarks</h2>
+            <p class="bookmark__desc">
+              If you don’t like to read, you haven’t found the right book
+            </p>
+            <ul class="bookmark__list">
+              <li class="bookmark__item">
+                <div class="bookmark__item-right">
+                  <p class="bookmark__item-name">Phyton</p>
+                  <p class="bookmark__item-author">David M. Beazley</p>
+                </div>
+                <div class="bookmark__item-left">
+                  <button class="bookmark__read">
+                    <img src="./img/book-open.svg" alt="book icon" />
+                  </button>
+                  <button class="bookmark__delete">
+                    <img src="./img/delete.svg" alt="delete-icon" />
+                  </button>
+                </div>
+              </li>
+              <li class="bookmark__item">
+                <div class="bookmark__item-right">
+                  <p class="bookmark__item-name">Phyton</p>
+                  <p class="bookmark__item-author">David M. Beazley</p>
+                </div>
+                <div class="bookmark__item-left">
+                  <button class="bookmark__read">
+                    <img src="./img/book-open.svg" alt="book icon" />
+                  </button>
+                  <button class="bookmark__delete">
+                    <img src="./img/delete.svg" alt="delete-icon" />
+                  </button>
+                </div>
+              </li>
+
+              <li class="bookmark__item">
+                <div class="bookmark__item-right">
+                  <p class="bookmark__item-name">Phyton</p>
+                  <p class="bookmark__item-author">David M. Beazley</p>
+                </div>
+                <div class="bookmark__item-left">
+                  <button class="bookmark__read">
+                    <img src="./img/book-open.svg" alt="book icon" />
+                  </button>
+                  <button class="bookmark__delete">
+                    <img src="./img/delete.svg" alt="delete-icon" />
+                  </button>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="cards">
+            <div class="books row justify-content-evenly">
+              <div class="books__card col-3">
+                <div class="books__card-img">
+                  <img
+                    class="books__img"
+                    src="http://books.google.com/books/content?id=zYw3sYFtz9kC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api"
+                    alt="book image"
+                  />
+                </div>
+
+                <div class="books__card-body">
+                  <h2 class="books__name">phyton</h2>
+                  <p class="books__author">Quvonchbek</p>
+                  <p class="books__year">2009</p>
+
+                  <div
+                    class="books__btns d-flex flex-wrap justify-content-between"
+                  >
+                    <button class="books__bookmark-btn">Bookmark</button>
+                    <button class="books__info-btn">More Info</button>
+                    <button class="books__read-btn">Read</button>
+                  </div>
+                </div>
+              </div>
+              <div class="books__card col-3">
+                <div class="books__card-img">
+                  <img
+                    class="books__img"
+                    src="http://books.google.com/books/content?id=zYw3sYFtz9kC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api"
+                    alt="book image"
+                  />
+                </div>
+                <div class="books__card-body">
+                  <h2 class="books__name">phyton</h2>
+                  <p class="books__author">Quvonchbek</p>
+                  <p class="books__year">2009</p>
+
+                  <div
+                    class="books__btns d-flex flex-wrap justify-content-between"
+                  >
+                    <button class="books__bookmark-btn">Bookmark</button>
+                    <button class="books__info-btn">More Info</button>
+                    <button class="books__read-btn">Read</button>
+                  </div>
+                </div>
+              </div>
+              <div class="books__card col-3">
+                <div class="books__card-img">
+                  <img
+                    class="books__img"
+                    src="http://books.google.com/books/content?id=zYw3sYFtz9kC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api"
+                    alt="book image"
+                  />
+                </div>
+
+                <div class="books__card-body">
+                  <h2 class="books__name">phyton</h2>
+                  <p class="books__author">Quvonchbek</p>
+                  <p class="books__year">2009</p>
+
+                  <div
+                    class="books__btns d-flex flex-wrap justify-content-between"
+                  >
+                    <button class="books__bookmark-btn">Bookmark</button>
+                    <button class="books__info-btn">More Info</button>
+                    <button class="books__read-btn">Read</button>
+                  </div>
+                </div>
+              </div>
+              <div class="books__card col-3">
+                <div class="books__card-img">
+                  <img
+                    class="books__img"
+                    src="http://books.google.com/books/content?id=zYw3sYFtz9kC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api"
+                    alt="book image"
+                  />
+                </div>
+
+                <div class="books__card-body">
+                  <h2 class="books__name">phyton</h2>
+                  <p class="books__author">Quvonchbek</p>
+                  <p class="books__year">2009</p>
+
+                  <div
+                    class="books__btns d-flex flex-wrap justify-content-between"
+                  >
+                    <button class="books__bookmark-btn">Bookmark</button>
+                    <button class="books__info-btn">More Info</button>
+                    <button class="books__read-btn">Read</button>
+                  </div>
+                </div>
+              </div>
+              <div class="books__card col-3">
+                <div class="books__card-img">
+                  <img
+                    class="books__img"
+                    src="http://books.google.com/books/content?id=zYw3sYFtz9kC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api"
+                    alt="book image"
+                  />
+                </div>
+
+                <div class="books__card-body">
+                  <h2 class="books__name">phyton</h2>
+                  <p class="books__author">Quvonchbek</p>
+                  <p class="books__year">2009</p>
+
+                  <div
+                    class="books__btns d-flex flex-wrap justify-content-between"
+                  >
+                    <button class="books__bookmark-btn">Bookmark</button>
+                    <button class="books__info-btn">More Info</button>
+                    <button class="books__read-btn">Read</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="pagination d-flex flex-wrap justify-content-center">
+              <button class="prev-btn">
+                <img src="./img/prev-icon.svg" alt="prev icon" />
+              </button>
+              <div class="pagination__btns d-flex">
+                <button class="books-btn activeBtn">1</button>
+              </div>
+              <button class="next-btn">
+                <img src="./img/next.svg" alt="next icon" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
 
     <!-- FOOTER -->
     <footer class="footer"></footer>

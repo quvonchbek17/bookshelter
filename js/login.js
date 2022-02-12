@@ -33,8 +33,3 @@ elForm.addEventListener("submit", function (evt) {
       }
     });
 });
-
-// body: JSON.stringify({
-//     email: "eve.holt@reqres.in",
-//     password: "cityslicka",
-//   }),
