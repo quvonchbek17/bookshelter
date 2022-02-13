@@ -319,7 +319,6 @@ function renderCanvas(data, element) {
     pageCount = bookInfo.volumeInfo.pageCount;
   }
 
-  console.log(bookInfo.volumeInfo.title);
   let htmlInfoCard = `<div class="offcanvas-header">
     <h5 class="canvas__name" id="offcanvasRightLabel">${bookInfo.volumeInfo.title}</h5>
     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
