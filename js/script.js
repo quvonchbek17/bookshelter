@@ -15,15 +15,17 @@ let page = 1;
 let startIndex = (page - 1) * 15 + 1;
 let bookmarkBooks =
   JSON.parse(window.localStorage.getItem("localBookmark")) || [];
-let bookmarkId;
+let bookmarkId = null;
 let infoId;
 let data;
 let orederByNewest = "&";
 
 //// LOGOUT ////
+
 if (window.localStorage.getItem("token") == null) {
   window.location.replace("login.html");
 }
+
 logout.addEventListener("click", function (evt) {
   let localToken = window.localStorage.getItem("token");
   if (localToken) {
@@ -31,6 +33,8 @@ logout.addEventListener("click", function (evt) {
   }
   window.location.replace("login.html");
 });
+
+renderBookmark(bookmarkBooks, elBookmark);
 
 //// RENDER DATA ////
 
@@ -42,7 +46,6 @@ const renderdata = async function () {
     );
 
     data = await request.json();
-    bookMarkPush(data);
     renderCards(data, elBooks);
     renderBtns(data, elPaginationList);
   } catch {
@@ -133,7 +136,9 @@ function renderBtns(data, element) {
     }
     element.insertAdjacentHTML("beforeend", htmlBtns);
   }
+
   //// NEXT AND PREV ////
+
   if (page == 1) {
     prevBtn.disabled = true;
     prevBtn.classList.add("prev-bg");
