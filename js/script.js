@@ -36,18 +36,28 @@ logout.addEventListener("click", function (evt) {
 
 const renderdata = async function () {
   startIndex = (page - 1) * 15 + 1;
+  try {
+    let request = await fetch(
+      `https://www.googleapis.com/books/v1/volumes?q=${inputValue}&maxResults=15&startIndex=${startIndex}${orederByNewest}`
+    );
 
-  let request = await fetch(
-    `https://www.googleapis.com/books/v1/volumes?q=${inputValue}&maxResults=15&startIndex=${startIndex}${orederByNewest}`
-  );
-
-  data = await request.json();
-  bookMarkPush(data);
-  renderCards(data, elBooks);
-  renderBtns(data, elPaginationList);
+    data = await request.json();
+    bookMarkPush(data);
+    renderCards(data, elBooks);
+    renderBtns(data, elPaginationList);
+  } catch {
+    errorRender();
+  }
 };
-
 renderdata();
+
+//// ERROR RENDER ////
+
+function errorRender() {
+  let error = `API BILAN BOG'LIQ MUAMMO YUZAGA KELDI !!!`;
+  elBooks.insertAdjacentHTML("beforeend", error);
+  pagination.classList.add("visually-hidden");
+}
 
 //// RENDER CARDS ////
 
@@ -245,7 +255,6 @@ elNewest.addEventListener("click", function () {
 elBooks.addEventListener("click", function (evt) {
   if (evt.target.matches(".books__info-btn")) {
     infoId = evt.target.dataset.infobtn;
-    console.log(data);
     renderCanvas(data, elCanvas);
   }
 });
@@ -326,5 +335,3 @@ function renderCanvas(data, element) {
   <div class="canvas__footer"><a href="${bookInfo.volumeInfo.previewLink}" class="canvas__read-btn">Read</a></div>`;
   element.insertAdjacentHTML("beforeend", htmlInfoCard);
 }
-
-//// READ BTN ////
