@@ -117,7 +117,7 @@
             </ul>
           </div>
           <div class="cards">
-            <h2 class="cards-default mt-5 text-center visually-hidden" id="cardsDefault">Kitoblar topilmadi &#128528</h2>
+            <h2 class="cards-default mt-5 mb-5 text-center visually-hidden" id="cardsDefault">Kitoblar topilmadi &#128528</h2>
             <div class="books row justify-content-evenly">
               <div class="books__card col-3">
                 <div class="books__card-img">
@@ -136,7 +136,8 @@
                 <div class="books__btns" id="booksBtns">
                   <button class="books__bookmark-btn">Bookmark</button>
                   <button class="books__info-btn">More Info</button>
-                  <button class="books__read-btn">Read</button>
+                  <a src="http://books.google.co.uz/books?id=ZW5KAAAAMAAJ&pg=PA428&dq=phyton&hl=&cd=21&source=gbs_api" target="_blank" class="books__read-btn" data-readBtn="${1}">Read</a>
+                  <!-- <button class="books__read-btn">Read</button> -->
                 </div>
               </div>
             </div>
@@ -152,12 +153,40 @@
               </div>
               <button class="next-btn" id="nextBtn">
                 <img src="./img/next.svg" alt="next icon" />
+
               </button>
             </div>
           </div>
         </div>
       </div>
     </main>
+
+
+
+      <!-- CONVAS -->
+
+      <!-- <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Toggle right offcanvas</button> -->
+
+      <div class="canvas offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header">
+          <h5 class="canvas__name" id="offcanvasRightLabel">Report of the Board of Education of the State of Connecticut to the Governor</h5>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <img class="canvas__img" src="http://books.google.com/books/content?id=nKigAAAAMAAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api" alt="photo" width="230" height="300">
+          <p class="canvas__desc">Budget report for 1929/31 deals also with the operations of the fiscal year ended June 30, 1928 and the estimates for the fiscal year ending June 30, 1929.",
+            "industryIdentifiers</p>
+        </div>
+        <ul class="canvas__list">
+          <li class="canvas__item">Author : <p class="canvas__item-book">Quvonchbek</p></li>
+          <li class="canvas__item">Published : <p class="canvas__item-book">2019</p></li>
+          <li class="canvas__item">Publishers: <p class="canvas__item-book">Hollman</p></li>
+          <li class="canvas__item">Categories:<p class="canvas__item-book">Computers</p></li>
+          <li class="canvas__item">Pages Count:<p class="canvas__item-book">346</p></li>
+        </ul>
+        <div class="canvas__footer"><button class="canvas__read-btn">Read</button></div>
+      </div>
+
 
     <!-- FOOTER -->
     <footer class="footer"></footer>

@@ -7,6 +7,8 @@ let elBookmark = document.querySelector(".bookmark__list");
 let elCardBtns = document.querySelector(".books__btns");
 let elCard = document.querySelector(".books__card");
 let elCardNull = document.querySelector(".cards-default");
+let elNewest = document.querySelector(".main__orderbtn");
+let elCanvas = document.querySelector(".canvas");
 
 let inputValue = "search+terms";
 
@@ -15,7 +17,9 @@ let startIndex = (page - 1) * 15 + 1;
 let bookmarkBooks =
   JSON.parse(window.localStorage.getItem("localBookmark")) || [];
 let bookmarkId;
+let infoId;
 let data;
+let orederByNewest = "&";
 
 //// LOGOUT ////
 if (window.localStorage.getItem("token") == null) {
@@ -36,18 +40,16 @@ const renderdata = async function () {
   console.log(startIndex);
 
   let request = await fetch(
-    `https://www.googleapis.com/books/v1/volumes?q=${inputValue}&maxResults=15&startIndex=${startIndex}`
+    `https://www.googleapis.com/books/v1/volumes?q=${inputValue}&maxResults=15&startIndex=${startIndex}${orederByNewest}`
   );
 
   data = await request.json();
-  console.log(data);
   bookMarkPush(data);
   renderCards(data, elBooks);
-  renderBtns(data);
+  renderBtns(data, elPaginationList);
 };
 
 renderdata();
-console.log(data);
 
 //// RENDER CARDS ////
 
@@ -92,8 +94,8 @@ function renderCards(data, element) {
                     class="books__btns d-flex flex-wrap justify-content-between "
                   >
                     <button class="books__bookmark-btn" data-bookmarkBtn="${bookmarkId}">Bookmark</button>
-                    <button class="books__info-btn" data-infoBtn="${bookmarkId}">More Info</button>
-                    <button class="books__read-btn" data-readBtn="${bookmarkId}">Read</button>
+                    <button class="books__info-btn" data-infoBtn="${bookmarkId}" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">More Info</button>
+                    <a href="${book.volumeInfo.previewLink}" class="books__read-btn" data-readBtn="${bookmarkId}">Read</a>
                   </div>
               </div>`;
       element.insertAdjacentHTML("beforeend", htmlbook);
@@ -104,12 +106,12 @@ function renderCards(data, element) {
 
 //// RENDER PAGINATION ////
 
-function renderBtns(data) {
+function renderBtns(data, element) {
   if (data.totalItems != 0) {
     pagination.classList.remove("visually-hidden");
     elCardNull.classList.add("visually-hidden");
   }
-  elPaginationList.innerHTML = null;
+  element.innerHTML = null;
   showResult.textContent = data.totalItems;
   let btnsnumber = Math.ceil(data.totalItems / 15);
   for (let i = 1; i <= btnsnumber; i++) {
@@ -118,7 +120,7 @@ function renderBtns(data) {
     if (page == i) {
       htmlBtns = `<button class=" activeBtn books-btn ">${i}</button> `;
     }
-    elPaginationList.insertAdjacentHTML("beforeend", htmlBtns);
+    element.insertAdjacentHTML("beforeend", htmlBtns);
   }
 
   if (page == 1) {
@@ -161,7 +163,7 @@ elForm.addEventListener("submit", function (evt) {
   renderdata();
 });
 
-//// BOOKMARK, MORE INFO, READ BTNS ////
+//// BOOKMARK BTNS ////
 
 elBooks.addEventListener("click", function (evt) {
   if (evt.target.matches(".books__bookmark-btn")) {
@@ -207,9 +209,9 @@ function renderBookmark(books, element) {
         <p class="bookmark__item-author">${author}</p>
       </div>
       <div class="bookmark__item-left">
-        <button class="bookmark__read"  >
+        <a class="bookmark__read" href="${book.volumeInfo.previewLink}" >
           <img data-bookmarkreadid="${counter}" src="./img/book-open.svg" alt="book icon" />
-        </button>
+        </a>
         <button class="bookmark__delete" >
           <img  data-bookmarkdeleteid="${counter}" class="bookmark__delete-icon" src="./img/delete.svg" alt="delete-icon" />
         </button>
@@ -221,7 +223,7 @@ function renderBookmark(books, element) {
   }
 }
 
-//// DELETE, READ BOOKMARK ////
+//// DELETE BTN BOOKMARK ////
 
 elBookmark.addEventListener("click", function (evt) {
   if (evt.target.matches(".bookmark__delete-icon")) {
@@ -229,6 +231,102 @@ elBookmark.addEventListener("click", function (evt) {
     bookmarkBooks.splice(bookmarkBooksId, 1);
     window.localStorage.setItem("localBookmark", JSON.stringify(bookmarkBooks));
     renderBookmark(bookmarkBooks, elBookmark);
-    // renderdata();
   }
 });
+
+//// ORDER BY NEWEST ////
+
+elNewest.addEventListener("click", function () {
+  orederByNewest = "&";
+  orederByNewest += "orderBy=newest";
+  renderdata();
+});
+
+//////// RENDER CANVAS ////////
+
+elBooks.addEventListener("click", function (evt) {
+  if (evt.target.matches(".books__info-btn")) {
+    infoId = evt.target.dataset.infobtn;
+    console.log(data);
+    renderCanvas(data, elCanvas);
+  }
+});
+
+function renderCanvas(data, element) {
+  element.innerHTML = null;
+  let bookInfo = data.items[infoId];
+  let description;
+  let author;
+  let year;
+  let publisher;
+  let categorie;
+  let pageCount;
+
+  //// DESCRIPTION ////
+
+  if (bookInfo.volumeInfo.description == undefined) {
+    description = "Ma'lumot keltirilmagan !";
+  } else {
+    description = bookInfo.volumeInfo.description;
+  }
+
+  //// YEAR ////
+  if (bookInfo.volumeInfo.publishedDate == undefined) {
+    year = "Yil keltirilmagan !";
+  } else {
+    year = bookInfo.volumeInfo.publishedDate;
+  }
+
+  //// AUTHOR ////
+
+  if (bookInfo.volumeInfo.authors == undefined) {
+    author = "Ma'lumot yo'q";
+  } else {
+    author = bookInfo.volumeInfo.authors[0];
+  }
+
+  //// PUBLISHERS ////
+
+  if (bookInfo.volumeInfo.publisher == undefined) {
+    publisher = "Ma'lumot yo'q";
+  } else {
+    publisher = bookInfo.volumeInfo.publisher;
+  }
+
+  //// CATEGORIES ////
+
+  if (bookInfo.volumeInfo.categories == undefined) {
+    categorie = "Ma'lumot yo'q";
+  } else {
+    categorie = bookInfo.volumeInfo.categories[0];
+  }
+
+  //// PAGE COUNT ////
+
+  if (bookInfo.volumeInfo.pageCount == undefined) {
+    pageCount = "Ma'lumot yo'q";
+  } else {
+    pageCount = bookInfo.volumeInfo.pageCount;
+  }
+
+  console.log(bookInfo.volumeInfo.title);
+  let htmlInfoCard = `<div class="offcanvas-header">
+    <h5 class="canvas__name" id="offcanvasRightLabel">${bookInfo.volumeInfo.title}</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <img class="canvas__img" src="${bookInfo.volumeInfo.imageLinks?.smallThumbnail}" alt="photo" >
+    <p class="canvas__desc">${description}</p>
+  </div>
+  <ul class="canvas__list">
+    <li class="canvas__item">Author : <p class="canvas__item-book">${author}</p></li>
+     <li class="canvas__item">Published : <p class="canvas__item-book">${year}</p></li>
+    <li class="canvas__item">Publishers: <p class="canvas__item-book">${publisher}</p></li>
+    <li class="canvas__item">Categories:<p class="canvas__item-book">${categorie}</p></li>
+    <li class="canvas__item">Pages Count:<p class="canvas__item-book">${pageCount}</p></li>
+  </ul>
+  <div class="canvas__footer"><button class="canvas__read-btn">Read</button></div>`;
+  element.insertAdjacentHTML("beforeend", htmlInfoCard);
+}
+
+//// READ BTN ////
