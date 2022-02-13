@@ -11,7 +11,6 @@ let elNewest = document.querySelector(".main__orderbtn");
 let elCanvas = document.querySelector(".canvas");
 
 let inputValue = "search+terms";
-
 let page = 1;
 let startIndex = (page - 1) * 15 + 1;
 let bookmarkBooks =
@@ -37,7 +36,6 @@ logout.addEventListener("click", function (evt) {
 
 const renderdata = async function () {
   startIndex = (page - 1) * 15 + 1;
-  console.log(startIndex);
 
   let request = await fetch(
     `https://www.googleapis.com/books/v1/volumes?q=${inputValue}&maxResults=15&startIndex=${startIndex}${orederByNewest}`
@@ -325,7 +323,7 @@ function renderCanvas(data, element) {
     <li class="canvas__item">Categories:<p class="canvas__item-book">${categorie}</p></li>
     <li class="canvas__item">Pages Count:<p class="canvas__item-book">${pageCount}</p></li>
   </ul>
-  <div class="canvas__footer"><button class="canvas__read-btn">Read</button></div>`;
+  <div class="canvas__footer"><a href="${bookInfo.volumeInfo.previewLink}" class="canvas__read-btn">Read</a></div>`;
   element.insertAdjacentHTML("beforeend", htmlInfoCard);
 }
 
