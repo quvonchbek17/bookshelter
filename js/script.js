@@ -115,12 +115,15 @@ function renderCards(data, element) {
 //// RENDER PAGINATION ////
 
 function renderBtns(data, element) {
-  if (data.totalItems != 0) {
+  if (data.totalItems != 0 && data.items != undefined) {
     pagination.classList.remove("visually-hidden");
     elCardNull.classList.add("visually-hidden");
+    showResult.textContent = data.totalItems;
+  } else {
+    showResult.textContent = 0;
   }
+
   element.innerHTML = null;
-  showResult.textContent = data.totalItems;
   let btnsnumber = Math.ceil(data.totalItems / 15);
   for (let i = 1; i <= btnsnumber; i++) {
     let htmlBtns = `<button class=" books-btn">${i}</button> `;
@@ -130,7 +133,7 @@ function renderBtns(data, element) {
     }
     element.insertAdjacentHTML("beforeend", htmlBtns);
   }
-
+  //// NEXT AND PREV ////
   if (page == 1) {
     prevBtn.disabled = true;
     prevBtn.classList.add("prev-bg");
